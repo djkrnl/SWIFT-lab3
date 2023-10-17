@@ -15,6 +15,7 @@
 		3FB99A4D2AD5456300DCDA30 /* lab3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99A4C2AD5456300DCDA30 /* lab3UITests.swift */; };
 		3FB99A4F2AD5456300DCDA30 /* lab3UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99A4E2AD5456300DCDA30 /* lab3UITestsLaunchTests.swift */; };
 		3FB99A5C2AD545CC00DCDA30 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99A5B2AD545CC00DCDA30 /* CardView.swift */; };
+		3FE52D062ADE7DBB00EFB437 /* ThemeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE52D052ADE7DBB00EFB437 /* ThemeButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		3FB99A4C2AD5456300DCDA30 /* lab3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lab3UITests.swift; sourceTree = "<group>"; };
 		3FB99A4E2AD5456300DCDA30 /* lab3UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lab3UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FB99A5B2AD545CC00DCDA30 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		3FE52D052ADE7DBB00EFB437 /* ThemeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				3FB99A352AD5456300DCDA30 /* Assets.xcassets */,
 				3FB99A372AD5456300DCDA30 /* Preview Content */,
 				3FB99A5B2AD545CC00DCDA30 /* CardView.swift */,
+				3FE52D052ADE7DBB00EFB437 /* ThemeButtonView.swift */,
 			);
 			path = lab3;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			files = (
 				3FB99A342AD5456200DCDA30 /* ContentView.swift in Sources */,
 				3FB99A5C2AD545CC00DCDA30 /* CardView.swift in Sources */,
+				3FE52D062ADE7DBB00EFB437 /* ThemeButtonView.swift in Sources */,
 				3FB99A322AD5456200DCDA30 /* lab3App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

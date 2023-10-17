@@ -2,20 +2,28 @@ import SwiftUI
 
 struct ContentView: View {
     let contents: Array<String> = ["😁", "😢", "🥰", "🥰", "💩", "💀", "😰", "🤯", "🤬", "😇"]
-    @State var cardCount = 4
+    @State var cardCount = 10
     let off = 2
 
     var body: some View {
         VStack {
+            Text("Memo")
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
+            
             ScrollView {
                 cardDisplay
             }
             
+            themeButtons
+            
+            /*
             HStack {
                 addCard
                 Spacer()
                 removeCard
             }
+            */
         }
         .padding()
     }
@@ -30,6 +38,21 @@ struct ContentView: View {
         .foregroundColor(.blue)
     }
     
+    var themeButtons: some View {
+        return themeButtonsViews()
+    }
+    
+    func themeButtonsViews() -> some View {
+        HStack {
+            ThemeButtonView(number: 1, image: "note")
+            Spacer()
+            ThemeButtonView(number: 2, image: "heart")
+            Spacer()
+            ThemeButtonView(number: 3, image: "doc")
+        }
+    }
+    
+    /*
     var addCard: some View {
         return adjustCardNumber(offset: off, symbol: "+")
     }
@@ -49,4 +72,5 @@ struct ContentView: View {
         }
         .disabled(symbol == "+" ? (cardCount + off > contents.count ? true : false) : (cardCount - off <= 0 ? true : false))
     }
+    */
 }
