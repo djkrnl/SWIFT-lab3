@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CardView: View {
     @State var faceUp: Bool = false
+    let content: String
     
     var body: some View {
         ZStack {
@@ -9,7 +10,7 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(.white)
                     .strokeBorder(lineWidth: 2)
-                Text("👌")
+                Text(content)
                     .font(.largeTitle)
             }
             .opacity(faceUp ? 1 : 0)
@@ -21,8 +22,4 @@ struct CardView: View {
             faceUp.toggle()
         })
     }
-}
-
-#Preview {
-    CardView()
 }
