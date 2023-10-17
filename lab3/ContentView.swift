@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let contents: Array<String> = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+    let contents: Array<String> = ["😁", "😢", "🥰", "🥰", "💩", "💀", "😰", "🤯", "🤬", "😇"]
     @State var cardCount = 4
     let off = 2
 
