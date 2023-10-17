@@ -6,30 +6,36 @@ struct ContentView: View {
     let off = 2
 
     var body: some View {
-        HStack {
+        VStack {
+            ScrollView {
+                cardDisplay
+            }
+            
+            HStack {
+                addCard
+                Spacer()
+                removeCard
+            }
+        }
+        .padding()
+    }
+    
+    var cardDisplay: some View {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
             ForEach (0 ..< cardCount, id: \.self) { index in
                 CardView(faceUp: false, content: contents[index])
+                    .aspectRatio(2/3, contentMode: .fit)
             }
         }
         .foregroundColor(.blue)
-        .padding()
-        
-        HStack {
-            addCard
-            Spacer()
-            removeCard
-        }
-        .padding()
     }
     
     var addCard: some View {
         return adjustCardNumber(offset: off, symbol: "+")
-            //.isEnabled(cardCount + off <= contents.count ? true : false)
     }
     
     var removeCard: some View {
         return adjustCardNumber(offset: off, symbol: "-")
-            //.isEnabled(cardCount - off >= 0 ? true : false)
     }
     
     func adjustCardNumber(offset: Int, symbol: String) -> some View {
