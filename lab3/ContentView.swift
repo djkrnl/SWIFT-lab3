@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let contents: Array<String> = ["😁", "😢", "🥰", "🥰", "💩", "💀", "😰", "🤯", "🤬", "😇"]
-    @State var cardCount = 10
+    @State var theme = 1
     let off = 2
 
     var body: some View {
@@ -16,26 +15,18 @@ struct ContentView: View {
             }
             
             themeButtons
-            
-            /*
-            HStack {
-                addCard
-                Spacer()
-                removeCard
-            }
-            */
         }
+        .foregroundColor(theme == 1 ? .blue : (theme == 2 ? .red : .green))
         .padding()
     }
     
     var cardDisplay: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
-            ForEach (0 ..< cardCount, id: \.self) { index in
-                CardView(faceUp: false, content: contents[index])
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
+            ForEach (0 ..< themeContents().1, id: \.self) { index in
+                CardView(faceUp: false, content: themeContents().0[index])
                     .aspectRatio(2/3, contentMode: .fit)
             }
         }
-        .foregroundColor(.blue)
     }
     
     var themeButtons: some View {
@@ -44,33 +35,21 @@ struct ContentView: View {
     
     func themeButtonsViews() -> some View {
         HStack {
-            ThemeButtonView(number: 1, image: "note")
+            ThemeButtonView(number: 1, image: "note", theme: $theme)
             Spacer()
-            ThemeButtonView(number: 2, image: "heart")
+            ThemeButtonView(number: 2, image: "heart", theme: $theme)
             Spacer()
-            ThemeButtonView(number: 3, image: "doc")
+            ThemeButtonView(number: 3, image: "doc", theme: $theme)
         }
     }
     
-    /*
-    var addCard: some View {
-        return adjustCardNumber(offset: off, symbol: "+")
-    }
-    
-    var removeCard: some View {
-        return adjustCardNumber(offset: off, symbol: "-")
-    }
-    
-    func adjustCardNumber(offset: Int, symbol: String) -> some View {
-        Button(symbol) {
-            if (symbol == "+") {
-                cardCount = cardCount + offset
-            }
-            else if (symbol == "-") {
-                cardCount = cardCount - offset
-            }
+    func themeContents() -> (Array<String>, Int) {
+        if (theme == 1) {
+            return (["😁", "😁", "🥰", "🥰", "💩", "💩", "😰", "😰", "🤬", "🤬"].shuffled(), 10)
+        } else if (theme == 2) {
+            return (["😢", "😢", "💀", "💀", "🤯", "🤯"].shuffled(), 6)
+        } else {
+            return (["😇", "😇", "🥹", "🥹", "🥶", "🥶", "🤐", "🤐"].shuffled(), 8)
         }
-        .disabled(symbol == "+" ? (cardCount + off > contents.count ? true : false) : (cardCount - off <= 0 ? true : false))
     }
-    */
 }
