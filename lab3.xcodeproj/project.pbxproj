@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0EE6EE2AFA31EE008DAD69 /* MemoGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0EE6ED2AFA31EE008DAD69 /* MemoGameModel.swift */; };
+		3F0EE6F02AFA3868008DAD69 /* MemoGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0EE6EF2AFA3868008DAD69 /* MemoGameViewModel.swift */; };
 		3FB99A322AD5456200DCDA30 /* lab3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99A312AD5456200DCDA30 /* lab3App.swift */; };
 		3FB99A342AD5456200DCDA30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99A332AD5456200DCDA30 /* ContentView.swift */; };
 		3FB99A362AD5456300DCDA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB99A352AD5456300DCDA30 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F0EE6ED2AFA31EE008DAD69 /* MemoGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoGameModel.swift; sourceTree = "<group>"; };
+		3F0EE6EF2AFA3868008DAD69 /* MemoGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoGameViewModel.swift; sourceTree = "<group>"; };
 		3FB99A2E2AD5456200DCDA30 /* lab3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB99A312AD5456200DCDA30 /* lab3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lab3App.swift; sourceTree = "<group>"; };
 		3FB99A332AD5456200DCDA30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				3FB99A372AD5456300DCDA30 /* Preview Content */,
 				3FB99A5B2AD545CC00DCDA30 /* CardView.swift */,
 				3FE52D052ADE7DBB00EFB437 /* ThemeButtonView.swift */,
+				3F0EE6ED2AFA31EE008DAD69 /* MemoGameModel.swift */,
+				3F0EE6EF2AFA3868008DAD69 /* MemoGameViewModel.swift */,
 			);
 			path = lab3;
 			sourceTree = "<group>";
@@ -263,7 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F0EE6EE2AFA31EE008DAD69 /* MemoGameModel.swift in Sources */,
 				3FB99A342AD5456200DCDA30 /* ContentView.swift in Sources */,
+				3F0EE6F02AFA3868008DAD69 /* MemoGameViewModel.swift in Sources */,
 				3FB99A5C2AD545CC00DCDA30 /* CardView.swift in Sources */,
 				3FE52D062ADE7DBB00EFB437 /* ThemeButtonView.swift in Sources */,
 				3FB99A322AD5456200DCDA30 /* lab3App.swift in Sources */,

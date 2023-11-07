@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var theme = 1
-    let off = 2
+    @ObservedObject var viewModel: MemoGameViewModel = MemoGameViewModel()
 
     var body: some View {
         VStack {
@@ -14,6 +14,11 @@ struct ContentView: View {
                 cardDisplay
             }
             
+            Button("🔀") {
+                viewModel.shuffle()
+            }
+            .padding()
+            
             themeButtons
         }
         .foregroundColor(theme == 1 ? .blue : (theme == 2 ? .red : .green))
@@ -21,9 +26,9 @@ struct ContentView: View {
     }
     
     var cardDisplay: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
-            ForEach (0 ..< themeContents().1, id: \.self) { index in
-                CardView(faceUp: false, content: themeContents().0[index])
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))], spacing: 10) {
+            ForEach (viewModel.cards.indices, id: \.self) { index in
+                CardView(viewModel.cards[index])
                     .aspectRatio(2/3, contentMode: .fit)
             }
         }
@@ -35,21 +40,11 @@ struct ContentView: View {
     
     func themeButtonsViews() -> some View {
         HStack {
-            ThemeButtonView(number: 1, image: "note", theme: $theme)
+            ThemeButtonView(number: 1, image: "note", theme: $theme, viewModel: viewModel)
             Spacer()
-            ThemeButtonView(number: 2, image: "heart", theme: $theme)
+            ThemeButtonView(number: 2, image: "heart", theme: $theme, viewModel: viewModel)
             Spacer()
-            ThemeButtonView(number: 3, image: "doc", theme: $theme)
-        }
-    }
-    
-    func themeContents() -> (Array<String>, Int) {
-        if (theme == 1) {
-            return (["😁", "😁", "🥰", "🥰", "💩", "💩", "😰", "😰", "🤬", "🤬"].shuffled(), 10)
-        } else if (theme == 2) {
-            return (["😢", "😢", "💀", "💀", "🤯", "🤯"].shuffled(), 6)
-        } else {
-            return (["😇", "😇", "🥹", "🥹", "🥶", "🥶", "🤐", "🤐"].shuffled(), 8)
+            ThemeButtonView(number: 3, image: "doc", theme: $theme, viewModel: viewModel)
         }
     }
 }
