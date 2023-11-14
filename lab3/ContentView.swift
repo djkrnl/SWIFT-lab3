@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var theme = 1
     @ObservedObject var viewModel: MemoGameViewModel = MemoGameViewModel()
 
     var body: some View {
@@ -12,6 +11,7 @@ struct ContentView: View {
             
             ScrollView {
                 cardDisplay
+                    .animation(.default, value: viewModel.cards)
             }
             
             Button("🔀") {
@@ -21,7 +21,7 @@ struct ContentView: View {
             
             themeButtons
         }
-        .foregroundColor(theme == 1 ? .blue : (theme == 2 ? .red : .green))
+        .foregroundColor(MemoGameViewModel.color)
         .padding()
     }
     
@@ -30,6 +30,9 @@ struct ContentView: View {
             ForEach (viewModel.cards) { card in
                 CardView(card)
                     .aspectRatio(2/3, contentMode: .fit)
+                    .onTapGesture {
+                        viewModel.choose(card)
+                    }
             }
         }
     }
@@ -40,11 +43,11 @@ struct ContentView: View {
     
     func themeButtonsViews() -> some View {
         HStack {
-            ThemeButtonView(number: 1, image: "note", theme: $theme, viewModel: viewModel)
+            ThemeButtonView(number: 1, image: "note", viewModel: viewModel)
             Spacer()
-            ThemeButtonView(number: 2, image: "heart", theme: $theme, viewModel: viewModel)
+            ThemeButtonView(number: 2, image: "heart", viewModel: viewModel)
             Spacer()
-            ThemeButtonView(number: 3, image: "doc", theme: $theme, viewModel: viewModel)
+            ThemeButtonView(number: 3, image: "doc", viewModel: viewModel)
         }
     }
 }

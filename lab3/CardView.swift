@@ -23,8 +23,6 @@ struct CardView: View {
                 .fill()
                 .opacity(card.faceUp ? 0 : 1)
         }
-        .onTapGesture (perform: {
-            card.faceUp.toggle()
-        })
+        .opacity(card.faceUp || !card.matched ? 1 : 0)
     }
 }

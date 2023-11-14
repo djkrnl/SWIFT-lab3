@@ -16,8 +16,34 @@ struct MemoGameModel<CardContent> where CardContent: Equatable {
         cards.shuffle()
     }
     
-    func choose(card: Card) {
-        
+    var indexOfOneAndOnlyFaceUpCard: Int? {
+        get {
+            let faceUpCards = cards.indices.filter { index in
+                cards[index].faceUp
+            }
+            return faceUpCards.count == 1 ? faceUpCards.first : nil
+        }
+        set {
+            return cards.indices.forEach {
+                cards[$0].faceUp = (newValue == $0)
+            }
+        }
+    }
+    
+    mutating func choose(_ card: Card) {
+        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
+            if (!cards[chosenIndex].faceUp && !cards[chosenIndex].matched) {
+                if let potentialIndex = indexOfOneAndOnlyFaceUpCard {
+                    if (cards[chosenIndex].content == cards[potentialIndex].content) {
+                        cards[chosenIndex].matched = true
+                        cards[potentialIndex].matched = true
+                    }
+                } else {
+                    indexOfOneAndOnlyFaceUpCard = chosenIndex
+                }
+                cards[chosenIndex].faceUp = true
+            }
+        }
     }
     
     struct Card: Equatable, Identifiable {
