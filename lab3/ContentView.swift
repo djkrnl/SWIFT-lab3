@@ -27,8 +27,8 @@ struct ContentView: View {
     
     var cardDisplay: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))], spacing: 10) {
-            ForEach (viewModel.cards.indices, id: \.self) { index in
-                CardView(viewModel.cards[index])
+            ForEach (viewModel.cards) { card in
+                CardView(card)
                     .aspectRatio(2/3, contentMode: .fit)
             }
         }
