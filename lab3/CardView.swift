@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CardView: View {
-    @State var card: MemoGameModel<String>.Card
+    var card: MemoGameModel<String>.Card
     
     init(_ card: MemoGameModel<String>.Card) {
         self.card = card
