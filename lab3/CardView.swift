@@ -8,21 +8,26 @@ struct CardView: View {
     }
     
     var body: some View {
-        ZStack {
-            Group {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(.white)
-                    .strokeBorder(lineWidth: 2)
+        CirclePart(endAngle: .degrees(240))
+            .opacity(0.5)
+            .overlay(
                 Text(card.content)
                     .font(.system(size: 200))
-                    .minimumScaleFactor(0.01)
-                    .aspectRatio(contentMode: .fit)
-            }
-            .opacity(card.faceUp ? 1 : 0)
-            RoundedRectangle(cornerRadius: 12)
-                .fill()
-                .opacity(card.faceUp ? 0 : 1)
-        }
-        .opacity(card.faceUp || !card.matched ? 1 : 0)
+                    .minimumScaleFactor(0.05)
+                    .multilineTextAlignment(.center)
+                    .aspectRatio(1, contentMode: .fit)
+                    .padding(5)
+                    .rotationEffect(.degrees(card.matched ? 360 : 0))
+                    .animation(.spin(duration: 2), value: card.matched)
+            )
+            .padding(5)
+            .transformIntoCard(faceUp: card.faceUp)
+            .opacity(card.faceUp || !card.matched ? 1 : 0)
+    }
+}
+
+extension Animation {
+    static func spin(duration: TimeInterval) -> Animation {
+        .linear(duration: duration).repeatForever(autoreverses: false)
     }
 }

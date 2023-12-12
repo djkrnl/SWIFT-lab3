@@ -20,7 +20,6 @@ struct CirclePart: Shape {
                  endAngle: endAngle,
                  clockwise: clockwise)
         p.addLine(to: center)
-        p.fill()
         
         return p
     }

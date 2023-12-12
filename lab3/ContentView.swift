@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: MemoGameViewModel = MemoGameViewModel()
+    @State var lastScoreChange = (0, causedByCardId: "")
 
     var body: some View {
         VStack {
@@ -11,17 +12,22 @@ struct ContentView: View {
             
             ScrollView {
                 cardDisplay
-                    .animation(.default, value: viewModel.cards)
+                    .foregroundColor(MemoGameViewModel.color)
             }
             
-            Button("🔀") {
-                viewModel.shuffle()
+            HStack {
+                score
+                
+                Spacer()
+                
+                shuffle
             }
-            .padding()
+                .font(.largeTitle)
+                .padding()
             
             themeButtons
         }
-        .foregroundColor(MemoGameViewModel.color)
+        // .foregroundColor(MemoGameViewModel.color)
         .padding()
     }
     
@@ -30,9 +36,36 @@ struct ContentView: View {
             ForEach (viewModel.cards) { card in
                 CardView(card)
                     .aspectRatio(2/3, contentMode: .fit)
+                    .overlay(FlyingNumber(number: scoreChange(causedBy: card)))
+                    .zIndex(scoreChange(causedBy: card) != 0 ? 100 : 0)
                     .onTapGesture {
-                        viewModel.choose(card)
+                        withAnimation {
+                            let scoreBeforeChoose = viewModel.score
+                        
+                            viewModel.choose(card)
+                            
+                            let scoreChange = viewModel.score - scoreBeforeChoose
+                            lastScoreChange = (scoreChange, causedByCardId: card.id)
+                        }
                     }
+            }
+        }
+    }
+    
+    private func scoreChange(causedBy card: MemoGameModel<String>.Card) -> Int {
+        let (amount, id) = lastScoreChange
+        return card.id == id ? amount : 0
+    }
+    
+    var score: some View {
+        Text("Wynik: \(viewModel.score)")
+            .animation(nil)
+    }
+    
+    var shuffle: some View {
+        Button("🔀") {
+            withAnimation {
+                viewModel.shuffle()
             }
         }
     }
